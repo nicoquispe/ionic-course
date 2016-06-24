@@ -1,8 +1,6 @@
 Curso de Ionic Framework
 ===
 
-Curso de Angular 2
-===
 
 ###Instructor: **Sergio Brito**
 

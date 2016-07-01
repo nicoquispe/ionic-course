@@ -25,16 +25,4 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-})
-
-.controller('HistoryCtrl', function($scope){
-
-  $scope.name = 'Sergio Brito';
-  $scope.lastName = '----'
-  $scope.save = function(){
-    console.log('Se ha pulsado un boton' +$scope.lastName);
-  }
-})
-
-
-;
+});

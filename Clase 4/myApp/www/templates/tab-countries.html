@@ -1,0 +1,11 @@
+<ion-view view-title="Countries">
+  <ion-content>
+    <h1 class="text-center">{{ theMessage }}</h1>
+     <!-- {{ theCountries }} -->
+    <ul class="list">
+      <li class="item" ng-repeat="country in theCountries">
+        {{ country.name }}
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
-console.log(Countries.all())
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -12,20 +11,32 @@ console.log(Countries.all())
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  $scope.chats = Countries.all();
+  $scope.theMessage = Chats.getMessage('Sergio');
+  $scope.chats = Chats.all();
   $scope.remove = function(chat) {
-    Countries.remove(chat);
-    console.log(Countries.all())
+    Chats.remove(chat);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Countries) {
-  $scope.chat = Countries.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+  $scope.chat = Chats.get($stateParams.chatId);
 })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('CountriesCtrl', function($scope, Countries, $http) {
+  $scope.theMessage = Countries.getMessage();
+  $scope.getCountries = function(){
+    $http.get('https://restcountries.eu/rest/v1/all')
+    .then(function(response){
+        $scope.theCountries = response.data;
+    }, function(error){
+        console.log(error)
+    });
+  }
+  $scope.getCountries();
 });

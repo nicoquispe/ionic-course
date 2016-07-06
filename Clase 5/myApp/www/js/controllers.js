@@ -22,10 +22,39 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $ionicPopup) {
   $scope.settings = {
     enableFriends: true
   };
+
+  $scope.showAlert = function(message){
+    $ionicPopup.alert({
+      title: "¡CUIDADO!",
+      subTitle: "Esta es una alerta fake",
+      cssClass: "miAlerta",
+      template: message,
+      okText: "¡No me importa!",
+      okType: "button-assertive"
+    });
+  }
+
+  $scope.showConfirm = function(){
+    var confirmPopup = $ionicPopup.confirm({
+      title: "Sobre tu viaje",
+      template: "¿Deseas viajar?"
+    })
+
+    confirmPopup.then(function(response){
+      if(response){
+        $scope.showAlert('Si desea viajar');
+        console.log('Si desea viajar')
+      } else {
+        $scope.showAlert('Se quedará aburrido en casa...');
+        console.log('Se quedará aburrido en casa...')
+      }
+    })
+  }
+
 })
 
 .controller('CountriesCtrl', function($scope, Countries, $http, $state, $ionicLoading) {

@@ -1,0 +1,31 @@
+<ion-view view-title="Detalle de {{ country.name }} ">
+
+  <ion-content class="padding">
+    <div class="card">
+      <div class="item item-divider">
+        Capital
+      </div>
+      <div class="item item-text-wrap">
+        {{ country.capital }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        Población
+      </div>
+      <div class="item item-text-wrap">
+        {{ country.population | number}} personas
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        Moneda
+      </div>
+      <div class="item item-text-wrap">
+        {{ country.currencies[0] }}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

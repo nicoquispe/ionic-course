@@ -28,12 +28,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CountriesCtrl', function($scope, Countries, $http, $state) {
+.controller('CountriesCtrl', function($scope, Countries, $http, $state, $ionicLoading) {
   $scope.theMessage = Countries.getMessage();
+
+  $ionicLoading.show({
+    content: "Cargando...",
+    animation: "fade-in",
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
+
+
   $scope.getCountries = function(){
     $http.get('https://restcountries.eu/rest/v1/all')
     .then(function(response){
         $scope.theCountries = response.data;
+        $ionicLoading.hide();
     }, function(error){
         console.log(error)
     });

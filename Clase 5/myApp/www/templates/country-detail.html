@@ -1,4 +1,4 @@
-<ion-view view-title="Detalle de {{ country.name }} ">
+<ion-view view-title="Detalle de {{ country.name }} " ng-init="initMap()">
 
   <ion-content class="padding">
     <div class="card">
@@ -27,5 +27,15 @@
         {{ country.currencies[0] }}
       </div>
     </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        Mapa
+      </div>
+      <div class="item item-text-wrap">
+        <div id="map"></div>
+      </div>
+    </div>
+    
   </ion-content>
 </ion-view>

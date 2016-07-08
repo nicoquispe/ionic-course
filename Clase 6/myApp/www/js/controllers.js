@@ -26,22 +26,36 @@ angular.module('starter.controllers', [])
 	$scope.showCustomDialog = function ( ) {
 		var customDialog = $ionicPopup.show({
 			title: 'Alerta Personalizada',
-			template: '¿Qué alerta desea abrir?',
+			template: '¿Qué tipo de diaglod desea abrir?',
 			buttons: [
 				{
-					text: "Si",
-					type: 'button-assertive'
+					text: "Alert",
+					type: 'button-assertive',
+					onTap: function(e) {
+						return 'alert';
+					}
 				},{
-					text: "No",
-					type: 'button-dark'
+					text: "Confirm",
+					type: 'button-dark',
+					onTap: function(e) {
+						return 'confirm';
+					}
 				},{
-					text: "Talvéz",
+					text: "Ninguno",
 					type: 'button-calm'
 				}
 			]
 		});
-		customDialog.then( function ( ) {
-			// body...
+		customDialog.then( function ( response ) {
+			if( !response ) return;
+			switch( response ){
+				case 'alert': 
+					$scope.showAlert('Abriendo desde .SHOW');
+					break;
+				case 'confirm':
+					$scope.showConfirm();
+					break;
+			}
 		} )
 	};
 	$scope.showConfirm = function () {

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Sample</title>
+	<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBCgokRcqNCKnMTFgqSfGejrVfZObrnZvA",
+			authDomain: "mypokemon-c5944.firebaseapp.com",
+			databaseURL: "https://mypokemon-c5944.firebaseio.com",
+			storageBucket: "mypokemon-c5944.appspot.com",
+		};
+		firebase.initializeApp(config);
+
+		var onSuccessful = function ( result ) {
+			var token = result.credential.accessToken;
+			var user = result.user;
+			console.log(result);
+		};
+		var onError = function ( result ) {
+			// body...
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			// The email of the user's account used.
+			var email = error.email;
+			// The firebase.auth.AuthCredential type that was used.
+			var credential = error.credential;
+			// ...
+			console.log(error);
+		};
+		var loginGithub = function ( ) {
+			var providerGitHub = new firebase.auth.GithubAuthProvider();
+			providerGitHub.addScope('repo');
+			//firebase.auth().signInWithRedirect(providerGitHub).then(function(result) {
+			firebase.auth().signInWithPopup(providerGitHub).then( onSuccessful ).catch( onError );
+		};
+		var loginFacebook = function ( ) {
+			var providerFacebook = new firebase.auth.FacebookAuthProvider();
+			//providerFacebook.addScope('repo');
+			//firebase.auth().signInWithRedirect(providerFacebook).then(function(result) {
+			firebase.auth().signInWithPopup(providerFacebook).then( onSuccessful ).catch( onError );
+		};
+
+		var loginTwitter = function ( ) {
+			var providerTwiter = new firebase.auth.TwitterAuthProvider();
+			//providerTwiter.addScope('repo');
+			//firebase.auth().signInWithRedirect(providerTwiter).then(function(result) {
+			firebase.auth().signInWithPopup(providerTwiter).then( onSuccessful ).catch( onError );
+		};
+
+
+	</script>
+	<a href="#" onclick="loginGithub()">GitHub</a> <br>
+	<a href="#" onclick="loginFacebook()">Facebook</a> <br>
+	<a href="#" onclick="loginTwitter()">Twitter</a> <br>
+</body>
+</html>

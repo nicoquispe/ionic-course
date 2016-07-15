@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope, $firebaseAuth, $state) {
 	var auth = $firebaseAuth();
 	$scope.loginWithGithub = function () {
-		var credential = firebase.auth.GithubAuthProvider.credential('03ed01f488299886dd9af481f8411709f1a4482f');
+		var credential = firebase.auth.GithubAuthProvider.credential('');
 		firebase.auth().signInWithCredential(credential).then(function(result) {
 			$scope.displayName = result.displayName;
 			$scope.userData = result;

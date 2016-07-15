@@ -1,9 +1,25 @@
 <ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
-  </ion-content>
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Login con {{ credentialData.provider}}
+			</div>
+			<div class="item item-text-wrap"> 
+
+				<a class="item item-avatar" href="#">
+					<img ng-src="{{userData.photoURL}}">
+					<h2>{{ userData.displayName }}</h2>
+					<p>{{ userData.email }}</p>
+					<p>
+						<ion-label>Token: </ion-label>{{ credentialData }}</p>
+				</a>
+
+			</div>
+			<div class="item item-divider">
+				<button class="button button-block button-balanced" ng-click="loginWithGithub()">
+					Github
+				</button>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>

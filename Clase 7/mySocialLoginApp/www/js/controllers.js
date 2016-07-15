@@ -21,13 +21,15 @@ angular.module('starter.controllers', [])
 	$scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('LoginCtrl', function($scope, Auth, $state) {
-	console.log(Auth);
+.controller('LoginCtrl', function($scope, $firebaseAuth, $state) {
+	var auth = $firebaseAuth();
 	$scope.loginWithGithub = function () {
-		
-		Auth.$authWithOAuthPopup('github').then( function (response) {
-			console.log( response );
-			$state.go('tab.dash');
+		var credential = firebase.auth.GithubAuthProvider.credential('03ed01f488299886dd9af481f8411709f1a4482f');
+		firebase.auth().signInWithCredential(credential).then(function(result) {
+			$scope.displayName = result.displayName;
+			$scope.userData = result;
+			$scope.credentialData = result;
+			console.log(result);
 		} ).catch( function ( error ) {
 			console.log( error );
 		} );
